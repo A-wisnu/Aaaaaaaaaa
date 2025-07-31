@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { 
   BookOpen, 
   Code, 
-  PresentationChart, 
+  Presentation, 
   Calculator, 
   Palette, 
   FileText,
@@ -75,7 +75,7 @@ export default function Services() {
     {
       id: 'presentasi',
       title: 'Presentasi',
-      icon: <PresentationChart className="h-12 w-12 text-indigo-600" />,
+      icon: <Presentation className="h-12 w-12 text-indigo-600" />,
       description: 'PowerPoint, Prezi, dan materi presentasi profesional',
       features: [
         'Design menarik',
