@@ -17,10 +17,15 @@ import {
   MessageCircle,
   ArrowRight
 } from 'lucide-react';
+import UserProfile from './UserProfile';
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState(null);
   const [showOrderForm, setShowOrderForm] = useState(false);
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem('user');
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
 
   const services = [
     {
@@ -305,11 +310,15 @@ export default function Services() {
               </div>
             </Link>
             <div className="flex items-center space-x-4">
-              <a href="https://wa.me/6281234567890" className="btn-primary group">
-                <span className="mr-2">📱</span>
-                Konsultasi Gratis
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+              {user ? (
+                <UserProfile />
+              ) : (
+                <Link to="/login" className="btn-primary group">
+                  <span className="mr-2">👤</span>
+                  Login
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -406,13 +415,17 @@ export default function Services() {
                   <div className="space-y-3">
                     <button
                       onClick={() => {
-                        setSelectedService(service);
-                        setShowOrderForm(true);
+                        if (user) {
+                          setSelectedService(service);
+                          setShowOrderForm(true);
+                        } else {
+                          window.location.href = '/login';
+                        }
                       }}
                       className="w-full btn-primary group"
                     >
                       <MessageCircle className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                      Pesan Sekarang
+                      {user ? 'Pesan Sekarang' : 'Login untuk Pesan'}
                     </button>
                     <button
                       onClick={() => setSelectedService(service)}
@@ -506,11 +519,17 @@ export default function Services() {
 
               <div className="flex gap-4 mt-8">
                 <button
-                  onClick={() => setShowOrderForm(true)}
+                  onClick={() => {
+                    if (user) {
+                      setShowOrderForm(true);
+                    } else {
+                      window.location.href = '/login';
+                    }
+                  }}
                   className="flex-1 btn-primary group text-lg py-4"
                 >
                   <MessageCircle className="mr-3 h-6 w-6 group-hover:scale-110 transition-transform" />
-                  Pesan Sekarang
+                  {user ? 'Pesan Sekarang' : 'Login untuk Pesan'}
                 </button>
                 <button
                   onClick={() => setSelectedService(null)}
@@ -525,7 +544,7 @@ export default function Services() {
       )}
 
       {/* Order Form Modal */}
-      {showOrderForm && selectedService && (
+      {showOrderForm && selectedService && user && (
         <OrderForm 
           service={selectedService} 
           onClose={() => {

@@ -22,16 +22,25 @@ import {
   Play
 } from 'lucide-react';
 import SplashScreen from './SplashScreen';
+import UserProfile from './UserProfile';
 
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeService, setActiveService] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoaded(true);
     }, 100);
+
+    // Check if user is logged in
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -150,10 +159,14 @@ export default function Home() {
                 <a href="#services" className="text-gray-700 hover:text-indigo-600 font-medium transition-colors">Services</a>
                 <a href="#about" className="text-gray-700 hover:text-indigo-600 font-medium transition-colors">About</a>
                 <a href="#testimonials" className="text-gray-700 hover:text-indigo-600 font-medium transition-colors">Reviews</a>
-                <Link to="/services" className="btn-primary group">
-                  Get Started
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                {user ? (
+                  <UserProfile />
+                ) : (
+                  <Link to="/login" className="btn-primary group">
+                    Login
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                )}
               </div>
             </div>
           </div>
