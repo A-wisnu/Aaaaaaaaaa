@@ -1,291 +1,289 @@
-import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import { 
-  User, 
-  BookOpen, 
-  Clock, 
-  CheckCircle, 
-  Plus, 
-  LogOut,
-  Bell,
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  Home,
+  MessageSquare,
+  BookOpen,
+  Users,
   Settings,
-  FileText,
-  DollarSign
+  Bell,
+  Search,
+  Plus,
+  TrendingUp,
+  Award,
+  Clock,
+  DollarSign,
+  User,
+  ArrowRight,
+  Sparkles,
+  Zap,
+  Target,
+  Shield
 } from 'lucide-react';
+import AuthGuard from './AuthGuard';
+import UserProfile from './UserProfile';
 
-export default function Dashboard() {
-  const { currentUser, logout } = useAuth();
-  const navigate = useNavigate();
+const Dashboard = () => {
+  const [user, setUser] = useState(null);
   const [activeTab, setActiveTab] = useState('overview');
+  const [notifications, setNotifications] = useState([]);
 
-  async function handleLogout() {
-    try {
-      await logout();
-      navigate('/');
-    } catch {
-      console.log('Failed to log out');
+  useEffect(() => {
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
     }
-  }
 
-  const orders = [
-    {
-      id: 'ORD001',
-      title: 'Tugas Algoritma dan Struktur Data',
-      subject: 'Informatika',
-      status: 'in_progress',
-      deadline: '2024-01-20',
-      price: 150000
-    },
-    {
-      id: 'ORD002',
-      title: 'Makalah Manajemen Strategis',
-      subject: 'Manajemen',
-      status: 'completed',
-      deadline: '2024-01-15',
-      price: 200000
-    },
-    {
-      id: 'ORD003',
-      title: 'Analisis Laporan Keuangan',
-      subject: 'Akuntansi',
-      status: 'pending',
-      deadline: '2024-01-25',
-      price: 175000
-    }
-  ];
+    // Mock notifications
+    setNotifications([
+      { id: 1, type: 'order', message: 'Your order #123 has been completed', time: '2 hours ago', unread: true },
+      { id: 2, type: 'community', message: 'New reply in Programming Help forum', time: '5 hours ago', unread: true },
+      { id: 3, type: 'system', message: 'Welcome to Assist Community!', time: '1 day ago', unread: false }
+    ]);
+  }, []);
 
   const stats = [
-    {
-      title: 'Total Pesanan',
-      value: '12',
-      icon: <FileText className="h-8 w-8 text-blue-600" />,
-      color: 'bg-blue-50'
-    },
-    {
-      title: 'Sedang Dikerjakan',
-      value: '3',
-      icon: <Clock className="h-8 w-8 text-yellow-600" />,
-      color: 'bg-yellow-50'
-    },
-    {
-      title: 'Selesai',
-      value: '8',
-      icon: <CheckCircle className="h-8 w-8 text-green-600" />,
-      color: 'bg-green-50'
-    },
-    {
-      title: 'Total Pengeluaran',
-      value: 'Rp 2.1M',
-      icon: <DollarSign className="h-8 w-8 text-purple-600" />,
-      color: 'bg-purple-50'
-    }
+    { label: 'Active Orders', value: '3', icon: <BookOpen className="h-8 w-8" />, color: 'from-blue-500 to-cyan-500' },
+    { label: 'Completed', value: '12', icon: <Award className="h-8 w-8" />, color: 'from-green-500 to-emerald-500' },
+    { label: 'Community Posts', value: '8', icon: <MessageSquare className="h-8 w-8" />, color: 'from-purple-500 to-pink-500' },
+    { label: 'Total Spent', value: '$450', icon: <DollarSign className="h-8 w-8" />, color: 'from-orange-500 to-red-500' }
   ];
 
-  const getStatusBadge = (status) => {
-    const statusConfig = {
-      pending: { bg: 'bg-yellow-100', text: 'text-yellow-800', label: 'Menunggu' },
-      in_progress: { bg: 'bg-blue-100', text: 'text-blue-800', label: 'Dikerjakan' },
-      completed: { bg: 'bg-green-100', text: 'text-green-800', label: 'Selesai' },
-      revision: { bg: 'bg-orange-100', text: 'text-orange-800', label: 'Revisi' }
-    };
-    
-    const config = statusConfig[status] || statusConfig.pending;
-    return (
-      <span className={`px-2 py-1 text-xs font-medium rounded-full ${config.bg} ${config.text}`}>
-        {config.label}
-      </span>
-    );
-  };
+  const recentOrders = [
+    { id: 1, title: 'React.js Assignment', status: 'In Progress', provider: 'CodeMaster', progress: 75, deadline: '2 days' },
+    { id: 2, title: 'Data Analysis Report', status: 'Review', provider: 'DataPro', progress: 90, deadline: '1 day' },
+    { id: 3, title: 'Research Paper', status: 'Completed', provider: 'AcademicExpert', progress: 100, deadline: 'Done' }
+  ];
+
+  const quickActions = [
+    { label: 'New Order', icon: <Plus className="h-6 w-6" />, color: 'from-indigo-500 to-purple-500', action: () => {} },
+    { label: 'Browse Services', icon: <Search className="h-6 w-6" />, color: 'from-blue-500 to-cyan-500', action: () => {} },
+    { label: 'Community', icon: <Users className="h-6 w-6" />, color: 'from-green-500 to-emerald-500', action: () => {} },
+    { label: 'Messages', icon: <MessageSquare className="h-6 w-6" />, color: 'from-pink-500 to-rose-500', action: () => {} }
+  ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <div className="h-8 w-8 bg-indigo-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">JP</span>
-              </div>
-              <span className="ml-2 text-xl font-bold text-gray-900">JokiPro</span>
-            </div>
-            <div className="flex items-center space-x-4">
-              <button className="p-2 text-gray-400 hover:text-gray-600">
-                <Bell className="h-5 w-5" />
-              </button>
-              <button className="p-2 text-gray-400 hover:text-gray-600">
-                <Settings className="h-5 w-5" />
-              </button>
-              <div className="flex items-center space-x-3">
-                {currentUser?.photoURL ? (
-                  <img 
-                    src={currentUser.photoURL} 
-                    alt="Profile" 
-                    className="h-8 w-8 rounded-full"
-                  />
-                ) : (
-                  <div className="h-8 w-8 bg-indigo-100 rounded-full flex items-center justify-center">
-                    <User className="h-5 w-5 text-indigo-600" />
+    <AuthGuard requireDisplayName={true}>
+      <div className="min-h-screen bg-gray-50">
+        {/* Navigation */}
+        <nav className="bg-white shadow-sm border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-16">
+              <div className="flex items-center space-x-4">
+                <Link to="/" className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <span className="text-white font-black text-lg">A</span>
                   </div>
-                )}
-                <span className="text-sm font-medium text-gray-700">
-                  {currentUser?.displayName || currentUser?.email?.split('@')[0] || 'User'}
-                </span>
+                  <div>
+                    <h1 className="text-xl font-black gradient-text-primary">Assist</h1>
+                    <p className="text-xs text-gray-500">Dashboard</p>
+                  </div>
+                </Link>
               </div>
-              <button
-                onClick={handleLogout}
-                className="p-2 text-gray-400 hover:text-gray-600"
-              >
-                <LogOut className="h-5 w-5" />
-              </button>
+
+              <div className="flex items-center space-x-4">
+                {/* Search */}
+                <div className="relative hidden md:block">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  />
+                </div>
+
+                {/* Notifications */}
+                <div className="relative">
+                  <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors relative">
+                    <Bell className="h-5 w-5 text-gray-600" />
+                    {notifications.some(n => n.unread) && (
+                      <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    )}
+                  </button>
+                </div>
+
+                <UserProfile />
+              </div>
             </div>
           </div>
-        </div>
-      </header>
+        </nav>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Welcome Section */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
-            Selamat datang, {currentUser?.displayName || currentUser?.email?.split('@')[0] || 'User'}!
-          </h1>
-          <p className="text-gray-600">
-            Kelola pesanan dan pantau progress tugas Anda di sini.
-          </p>
-          {currentUser?.email && (
-            <p className="text-sm text-gray-500 mt-1">
-              Login sebagai: {currentUser.email}
-            </p>
-          )}
-        </div>
-
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {stats.map((stat, index) => (
-            <div key={index} className="bg-white rounded-lg shadow p-6">
-              <div className="flex items-center">
-                <div className={`p-3 rounded-lg ${stat.color}`}>
-                  {stat.icon}
-                </div>
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-                  <p className="text-2xl font-semibold text-gray-900">{stat.value}</p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            {/* Sidebar */}
+            <div className="lg:col-span-1">
+              <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-8">
+                <div className="space-y-2">
+                  {[
+                    { id: 'overview', label: 'Overview', icon: <Home className="h-5 w-5" /> },
+                    { id: 'orders', label: 'My Orders', icon: <BookOpen className="h-5 w-5" /> },
+                    { id: 'community', label: 'Community', icon: <Users className="h-5 w-5" /> },
+                    { id: 'messages', label: 'Messages', icon: <MessageSquare className="h-5 w-5" /> },
+                    { id: 'settings', label: 'Settings', icon: <Settings className="h-5 w-5" /> }
+                  ].map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all duration-200 ${
+                        activeTab === tab.id
+                          ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg'
+                          : 'text-gray-600 hover:bg-gray-100'
+                      }`}
+                    >
+                      {tab.icon}
+                      <span className="font-medium">{tab.label}</span>
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
-          <button className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 flex items-center">
-            <Plus className="h-5 w-5 mr-2" />
-            Pesan Tugas Baru
-          </button>
-          <button className="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-50 flex items-center">
-            <BookOpen className="h-5 w-5 mr-2" />
-            Lihat Semua Layanan
-          </button>
-        </div>
+            {/* Main Content */}
+            <div className="lg:col-span-3">
+              {activeTab === 'overview' && (
+                <div className="space-y-8">
+                  {/* Welcome Section */}
+                  <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-2xl p-8 text-white relative overflow-hidden">
+                    <div className="absolute top-4 right-4 opacity-20">
+                      <Sparkles className="h-24 w-24" />
+                    </div>
+                    <div className="relative z-10">
+                      <h2 className="text-3xl font-bold mb-2">
+                        Welcome back, {user?.customDisplayName || user?.displayName || 'Student'}! 👋
+                      </h2>
+                      <p className="text-white/90 mb-6">
+                        Ready to continue your academic journey? Check out your progress and explore new opportunities.
+                      </p>
+                      <div className="flex space-x-4">
+                        <Link to="/services" className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 flex items-center">
+                          <Plus className="h-5 w-5 mr-2" />
+                          New Order
+                        </Link>
+                        <button className="border border-white/30 hover:bg-white/10 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 flex items-center">
+                          <Target className="h-5 w-5 mr-2" />
+                          Browse Services
+                        </button>
+                      </div>
+                    </div>
+                  </div>
 
-        {/* Orders Table */}
-        <div className="bg-white rounded-lg shadow">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">Pesanan Terbaru</h2>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    ID Pesanan
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Judul Tugas
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Mata Kuliah
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Status
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Deadline
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Harga
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Aksi
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {orders.map((order) => (
-                  <tr key={order.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                      {order.id}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                      {order.title}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {order.subject}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      {getStatusBadge(order.status)}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {new Date(order.deadline).toLocaleDateString('id-ID')}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                      Rp {order.price.toLocaleString('id-ID')}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <button className="text-indigo-600 hover:text-indigo-900">
-                        Detail
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+                  {/* Stats Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {stats.map((stat, index) => (
+                      <div key={index} className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                        <div className="flex items-center justify-between mb-4">
+                          <div className={`p-3 rounded-xl bg-gradient-to-r ${stat.color} text-white shadow-lg`}>
+                            {stat.icon}
+                          </div>
+                          <TrendingUp className="h-5 w-5 text-green-500" />
+                        </div>
+                        <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
+                        <div className="text-gray-600 font-medium">{stat.label}</div>
+                      </div>
+                    ))}
+                  </div>
 
-        {/* Recent Activity */}
-        <div className="mt-8 bg-white rounded-lg shadow">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">Aktivitas Terbaru</h2>
-          </div>
-          <div className="p-6">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <div className="h-2 w-2 bg-green-500 rounded-full"></div>
-                <p className="text-sm text-gray-600">
-                  <span className="font-medium">Tugas Algoritma</span> telah selesai dikerjakan
-                </p>
-                <span className="text-xs text-gray-400">2 jam yang lalu</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="h-2 w-2 bg-blue-500 rounded-full"></div>
-                <p className="text-sm text-gray-600">
-                  <span className="font-medium">Makalah Manajemen</span> sedang dalam progress
-                </p>
-                <span className="text-xs text-gray-400">5 jam yang lalu</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="h-2 w-2 bg-yellow-500 rounded-full"></div>
-                <p className="text-sm text-gray-600">
-                  Pesanan baru <span className="font-medium">Analisis Keuangan</span> diterima
-                </p>
-                <span className="text-xs text-gray-400">1 hari yang lalu</span>
-              </div>
+                  {/* Quick Actions */}
+                  <div className="bg-white rounded-2xl p-6 shadow-lg">
+                    <h3 className="text-xl font-bold text-gray-900 mb-6">Quick Actions</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {quickActions.map((action, index) => (
+                        <button
+                          key={index}
+                          onClick={action.action}
+                          className="p-6 rounded-xl border-2 border-gray-200 hover:border-transparent hover:shadow-lg transition-all duration-200 group"
+                          style={{
+                            background: `linear-gradient(135deg, ${action.color.split(' ')[1]} 0%, ${action.color.split(' ')[3]} 100%)`,
+                            backgroundClip: 'padding-box'
+                          }}
+                        >
+                          <div className={`w-12 h-12 bg-gradient-to-r ${action.color} rounded-xl flex items-center justify-center text-white mb-3 mx-auto group-hover:scale-110 transition-transform`}>
+                            {action.icon}
+                          </div>
+                          <div className="text-gray-700 font-semibold text-center">{action.label}</div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Recent Orders */}
+                  <div className="bg-white rounded-2xl p-6 shadow-lg">
+                    <div className="flex justify-between items-center mb-6">
+                      <h3 className="text-xl font-bold text-gray-900">Recent Orders</h3>
+                      <Link to="/orders" className="text-indigo-600 hover:text-indigo-700 font-semibold flex items-center">
+                        View All
+                        <ArrowRight className="h-4 w-4 ml-1" />
+                      </Link>
+                    </div>
+                    <div className="space-y-4">
+                      {recentOrders.map((order) => (
+                        <div key={order.id} className="border border-gray-200 rounded-xl p-4 hover:shadow-md transition-all duration-200">
+                          <div className="flex justify-between items-start mb-3">
+                            <div>
+                              <h4 className="font-semibold text-gray-900">{order.title}</h4>
+                              <p className="text-gray-600 text-sm">by {order.provider}</p>
+                            </div>
+                            <div className="text-right">
+                              <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                                order.status === 'Completed' ? 'bg-green-100 text-green-800' :
+                                order.status === 'In Progress' ? 'bg-blue-100 text-blue-800' :
+                                'bg-yellow-100 text-yellow-800'
+                              }`}>
+                                {order.status}
+                              </span>
+                              <div className="text-gray-500 text-sm mt-1 flex items-center">
+                                <Clock className="h-3 w-3 mr-1" />
+                                {order.deadline}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-2">
+                            <div
+                              className="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full transition-all duration-300"
+                              style={{ width: `${order.progress}%` }}
+                            ></div>
+                          </div>
+                          <div className="text-right text-sm text-gray-600 mt-1">{order.progress}% complete</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'orders' && (
+                <div className="bg-white rounded-2xl p-8 shadow-lg">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">My Orders</h2>
+                  <p className="text-gray-600">Order management interface will be implemented here.</p>
+                </div>
+              )}
+
+              {activeTab === 'community' && (
+                <div className="bg-white rounded-2xl p-8 shadow-lg">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Community</h2>
+                  <p className="text-gray-600">Community features will be implemented here.</p>
+                </div>
+              )}
+
+              {activeTab === 'messages' && (
+                <div className="bg-white rounded-2xl p-8 shadow-lg">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Messages</h2>
+                  <p className="text-gray-600">Messaging system will be implemented here.</p>
+                </div>
+              )}
+
+              {activeTab === 'settings' && (
+                <div className="bg-white rounded-2xl p-8 shadow-lg">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Settings</h2>
+                  <p className="text-gray-600">User settings will be implemented here.</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </AuthGuard>
   );
-}
+};
+
+export default Dashboard;

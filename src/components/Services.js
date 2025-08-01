@@ -30,123 +30,123 @@ export default function Services() {
   const services = [
     {
       id: 'tugas-kuliah',
-      title: 'Tugas Kuliah',
+      title: 'Academic Assignments',
       icon: <BookOpen className="h-12 w-12 text-white" />,
-      description: 'Essay, makalah, laporan, dan tugas akademik lainnya',
+      description: 'Essays, papers, reports, and various academic assignments',
       color: 'from-blue-500 to-cyan-500',
       bgColor: 'from-blue-50 to-cyan-50',
       features: [
-        'Berbagai mata kuliah',
-        'Referensi valid',
-        'Bebas plagiarisme',
-        'Revisi gratis'
+        'All academic subjects',
+        'Valid references',
+        'Plagiarism-free content',
+        'Free revisions'
       ],
       pricing: [
-        { type: 'Essay (1-5 halaman)', price: 'Rp 50.000 - 150.000' },
-        { type: 'Makalah (10-20 halaman)', price: 'Rp 200.000 - 400.000' },
-        { type: 'Laporan (20+ halaman)', price: 'Rp 400.000 - 800.000' }
+        { type: 'Essay (1-5 pages)', price: '$15 - $45' },
+        { type: 'Research Paper (10-20 pages)', price: '$60 - $120' },
+        { type: 'Report (20+ pages)', price: '$120 - $240' }
       ],
-      duration: '1-7 hari'
+      duration: '1-7 days'
     },
     {
       id: 'skripsi',
-      title: 'Skripsi & Thesis',
+      title: 'Thesis & Dissertation',
       icon: <FileText className="h-12 w-12 text-white" />,
-      description: 'Skripsi, thesis, dan penelitian akademik tingkat tinggi',
+      description: 'Undergraduate thesis, graduate dissertations, and high-level research',
       color: 'from-purple-500 to-pink-500',
       bgColor: 'from-purple-50 to-pink-50',
       features: [
-        'Metodologi penelitian',
-        'Analisis data lengkap',
-        'Bimbingan konsultasi',
-        'Revisi unlimited'
+        'Research methodology',
+        'Complete data analysis',
+        'Academic consultation',
+        'Unlimited revisions'
       ],
       pricing: [
-        { type: 'Proposal Skripsi', price: 'Rp 1.500.000 - 3.000.000' },
-        { type: 'Skripsi Lengkap', price: 'Rp 5.000.000 - 15.000.000' },
-        { type: 'Thesis S2', price: 'Rp 10.000.000 - 25.000.000' }
+        { type: 'Thesis Proposal', price: '$450 - $900' },
+        { type: 'Complete Thesis', price: '$1,500 - $4,500' },
+        { type: 'PhD Dissertation', price: '$3,000 - $7,500' }
       ],
-      duration: '30-90 hari'
+      duration: '30-90 days'
     },
     {
       id: 'programming',
-      title: 'Programming',
+      title: 'Programming Projects',
       icon: <Code className="h-12 w-12 text-white" />,
-      description: 'Tugas pemrograman, aplikasi web, mobile, dan desktop',
+      description: 'Programming assignments, web applications, mobile and desktop apps',
       color: 'from-green-500 to-emerald-500',
       bgColor: 'from-green-50 to-emerald-50',
       features: [
-        'Berbagai bahasa pemrograman',
-        'Source code lengkap',
-        'Dokumentasi detail',
+        'Multiple programming languages',
+        'Complete source code',
+        'Detailed documentation',
         'Testing & debugging'
       ],
       pricing: [
-        { type: 'Tugas Algoritma', price: 'Rp 200.000 - 500.000' },
-        { type: 'Aplikasi Web', price: 'Rp 1.000.000 - 5.000.000' },
-        { type: 'Mobile App', price: 'Rp 2.000.000 - 8.000.000' }
+        { type: 'Algorithm Assignment', price: '$60 - $150' },
+        { type: 'Web Application', price: '$300 - $1,500' },
+        { type: 'Mobile App', price: '$600 - $2,400' }
       ],
-      duration: '3-21 hari'
+      duration: '3-21 days'
     },
     {
       id: 'presentasi',
-      title: 'Presentasi',
+      title: 'Presentations',
       icon: <Presentation className="h-12 w-12 text-white" />,
-      description: 'PowerPoint, Prezi, dan materi presentasi profesional',
+      description: 'PowerPoint, Prezi, and professional presentation materials',
       color: 'from-orange-500 to-red-500',
       bgColor: 'from-orange-50 to-red-50',
       features: [
-        'Design menarik',
-        'Animasi profesional',
-        'Template custom',
-        'Speaker notes'
+        'Attractive design',
+        'Professional animations',
+        'Custom templates',
+        'Speaker notes included'
       ],
       pricing: [
-        { type: 'PPT Sederhana (10-20 slide)', price: 'Rp 150.000 - 300.000' },
-        { type: 'PPT Kompleks (30+ slide)', price: 'Rp 400.000 - 800.000' },
-        { type: 'Presentasi Bisnis', price: 'Rp 500.000 - 1.500.000' }
+        { type: 'Simple PPT (10-20 slides)', price: '$45 - $90' },
+        { type: 'Complex PPT (30+ slides)', price: '$120 - $240' },
+        { type: 'Business Presentation', price: '$150 - $450' }
       ],
-      duration: '1-5 hari'
+      duration: '1-5 days'
     },
     {
       id: 'analisis-data',
-      title: 'Analisis Data',
+      title: 'Data Analysis',
       icon: <Calculator className="h-12 w-12 text-white" />,
-      description: 'Analisis statistik menggunakan SPSS, Excel, R, Python',
+      description: 'Statistical analysis using SPSS, Excel, R, Python',
       color: 'from-indigo-500 to-purple-500',
       bgColor: 'from-indigo-50 to-purple-50',
       features: [
-        'Analisis deskriptif',
-        'Uji hipotesis',
-        'Regresi & korelasi',
-        'Interpretasi hasil'
+        'Descriptive analysis',
+        'Hypothesis testing',
+        'Regression & correlation',
+        'Results interpretation'
       ],
       pricing: [
-        { type: 'Analisis Sederhana', price: 'Rp 300.000 - 600.000' },
-        { type: 'Analisis Kompleks', price: 'Rp 800.000 - 2.000.000' },
-        { type: 'Machine Learning', price: 'Rp 1.500.000 - 5.000.000' }
+        { type: 'Basic Analysis', price: '$90 - $180' },
+        { type: 'Advanced Analysis', price: '$240 - $600' },
+        { type: 'Machine Learning', price: '$450 - $1,500' }
       ],
-      duration: '3-14 hari'
+      duration: '3-14 days'
     },
     {
       id: 'desain',
-      title: 'Desain Grafis',
+      title: 'Graphic Design',
       icon: <Palette className="h-12 w-12 text-white" />,
-      description: 'Logo, poster, infografis, dan desain visual lainnya',
+      description: 'Logos, posters, infographics, and visual design elements',
       color: 'from-pink-500 to-rose-500',
       bgColor: 'from-pink-50 to-rose-50',
       features: [
-        'Desain original',
+        'Original designs',
         'High resolution',
-        'Multiple format',
-        'Revisi 3x'
+        'Multiple formats',
+        '3 free revisions'
       ],
       pricing: [
-        { type: 'Logo Design', price: 'Rp 200.000 - 800.000' },
-        { type: 'Poster/Banner', price: 'Rp 150.000 - 500.000' },
-        { type: 'UI/UX Design', price: 'Rp 1.000.000 - 5.000.000' }
+        { type: 'Logo Design', price: '$60 - $240' },
+        { type: 'Poster/Banner', price: '$45 - $150' },
+        { type: 'UI/UX Design', price: '$300 - $1,500' }
       ],
-      duration: '2-10 hari'
+      duration: '2-10 days'
     }
   ];
 
@@ -162,7 +162,7 @@ export default function Services() {
     const handleSubmit = (e) => {
       e.preventDefault();
       // Handle form submission
-      alert('Pesanan berhasil dikirim! Kami akan menghubungi Anda segera.');
+      alert('Order submitted successfully! Our team will contact you soon.');
       onClose();
     };
 
@@ -184,9 +184,9 @@ export default function Services() {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900">
-                    Pesan {service.title}
+                    Request {service.title}
                   </h3>
-                  <p className="text-gray-600">Isi form di bawah untuk memulai</p>
+                  <p className="text-gray-600">Fill out the form below to get started</p>
                 </div>
               </div>
               <button
@@ -200,28 +200,28 @@ export default function Services() {
           <form onSubmit={handleSubmit} className="p-8 space-y-6">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-3">
-                Judul Tugas
+                Project Title
               </label>
               <input
                 type="text"
                 name="title"
                 required
                 className="form-input"
-                placeholder="Masukkan judul tugas Anda"
+                placeholder="Enter your project title"
                 value={formData.title}
                 onChange={handleChange}
               />
             </div>
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-3">
-                Deskripsi Detail
+                Detailed Description
               </label>
               <textarea
                 name="description"
                 required
                 rows={4}
                 className="form-input"
-                placeholder="Jelaskan detail tugas, requirements, dan instruksi khusus"
+                placeholder="Describe your project requirements, specifications, and special instructions"
                 value={formData.description}
                 onChange={handleChange}
               />
@@ -242,14 +242,14 @@ export default function Services() {
               </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-3">
-                  Budget (Rp)
+                  Budget ($)
                 </label>
                 <input
                   type="number"
                   name="budget"
                   required
                   className="form-input"
-                  placeholder="Masukkan budget Anda"
+                  placeholder="Enter your budget"
                   value={formData.budget}
                   onChange={handleChange}
                 />
@@ -257,14 +257,14 @@ export default function Services() {
             </div>
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-3">
-                WhatsApp/Telegram
+                Contact Information
               </label>
               <input
                 type="text"
                 name="contact"
                 required
                 className="form-input"
-                placeholder="Nomor WhatsApp atau username Telegram"
+                placeholder="WhatsApp, Telegram, or preferred contact method"
                 value={formData.contact}
                 onChange={handleChange}
               />
@@ -275,14 +275,14 @@ export default function Services() {
                 onClick={onClose}
                 className="flex-1 btn-ghost"
               >
-                Batal
+                Cancel
               </button>
               <button
                 type="submit"
                 className="flex-1 btn-primary group"
               >
                 <MessageCircle className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                Kirim Pesanan
+                Submit Request
               </button>
             </div>
           </form>
@@ -348,12 +348,12 @@ export default function Services() {
           </div>
           
           <h1 className="heading-xl text-white mb-8 text-shadow-lg">
-            Layanan <span className="bg-gradient-to-r from-yellow-300 via-pink-300 to-blue-300 bg-clip-text text-transparent">Premium</span> Kami
+            Our <span className="bg-gradient-to-r from-yellow-300 via-pink-300 to-blue-300 bg-clip-text text-transparent">Premium</span> Services
           </h1>
           
           <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed">
-            Pilih layanan yang sesuai dengan kebutuhan akademik Anda. 
-            Semua dikerjakan oleh ahli berpengalaman dengan kualitas terjamin.
+            Choose the service that fits your academic needs. 
+            All work is completed by experienced professionals with guaranteed quality.
           </p>
         </div>
       </section>
@@ -386,7 +386,7 @@ export default function Services() {
                   
                   {/* Features */}
                   <div className="mb-6">
-                    <h4 className="font-semibold text-gray-900 mb-3">Fitur:</h4>
+                    <h4 className="font-semibold text-gray-900 mb-3">What's Included:</h4>
                     <ul className="space-y-2">
                       {service.features.map((feature, index) => (
                         <li key={index} className="flex items-center text-sm text-gray-600">
@@ -400,12 +400,12 @@ export default function Services() {
                   {/* Duration */}
                   <div className="flex items-center mb-6 text-sm text-gray-600">
                     <Clock className="h-4 w-4 mr-2" />
-                    Estimasi: {service.duration}
+                    Delivery: {service.duration}
                   </div>
 
                   {/* Pricing Preview */}
                   <div className="mb-8">
-                    <h4 className="font-semibold text-gray-900 mb-2">Harga Mulai:</h4>
+                    <h4 className="font-semibold text-gray-900 mb-2">Starting at:</h4>
                     <p className="text-xl font-bold gradient-text-primary">
                       {service.pricing[0].price}
                     </p>
@@ -425,7 +425,7 @@ export default function Services() {
                       className="w-full btn-primary group"
                     >
                       <MessageCircle className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                      {user ? 'Pesan Sekarang' : 'Login untuk Pesan'}
+                      {user ? 'Request Service' : 'Login to Request'}
                     </button>
                     <button
                       onClick={() => setSelectedService(service)}
@@ -433,7 +433,7 @@ export default function Services() {
                     >
                       <div className="btn-outline-inner flex items-center justify-center">
                         <Star className="mr-2 h-5 w-5 group-hover:rotate-180 transition-transform" />
-                        Lihat Detail
+                        View Details
                       </div>
                     </button>
                   </div>
@@ -477,7 +477,7 @@ export default function Services() {
                 {/* Features */}
                 <div>
                   <h4 className="text-xl font-bold text-gray-900 mb-6">
-                    Yang Anda Dapatkan:
+                    What You Get:
                   </h4>
                   <ul className="space-y-4">
                     {selectedService.features.map((feature, index) => (
@@ -492,7 +492,7 @@ export default function Services() {
                 {/* Pricing */}
                 <div>
                   <h4 className="text-xl font-bold text-gray-900 mb-6">
-                    Daftar Harga:
+                    Pricing Guide:
                   </h4>
                   <div className="space-y-4">
                     {selectedService.pricing.map((item, index) => (
@@ -509,11 +509,11 @@ export default function Services() {
                 <div className="flex items-center mb-3">
                   <Clock className="h-6 w-6 text-blue-600 mr-3" />
                   <span className="font-bold text-blue-900 text-lg">
-                    Estimasi Pengerjaan: {selectedService.duration}
+                    Delivery Time: {selectedService.duration}
                   </span>
                 </div>
                 <p className="text-blue-700">
-                  Waktu pengerjaan dapat disesuaikan dengan tingkat kesulitan dan ketersediaan tim.
+                  Delivery time may vary based on project complexity and our team's availability.
                 </p>
               </div>
 
@@ -529,13 +529,13 @@ export default function Services() {
                   className="flex-1 btn-primary group text-lg py-4"
                 >
                   <MessageCircle className="mr-3 h-6 w-6 group-hover:scale-110 transition-transform" />
-                  {user ? 'Pesan Sekarang' : 'Login untuk Pesan'}
+                  {user ? 'Request Service' : 'Login to Request'}
                 </button>
                 <button
                   onClick={() => setSelectedService(null)}
                   className="flex-1 btn-ghost text-lg py-4"
                 >
-                  Tutup
+                  Close
                 </button>
               </div>
             </div>
@@ -559,30 +559,30 @@ export default function Services() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="heading-lg text-gray-900 mb-6">
-              Mengapa Memilih <span className="gradient-text-primary">Assist?</span>
+              Why Choose <span className="gradient-text-primary">Assist?</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Komitmen kami untuk memberikan layanan terbaik dengan standar akademik tertinggi
+              Our commitment to providing the best service with the highest academic standards
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 icon: <Star className="h-12 w-12 text-yellow-500" />,
-                title: 'Kualitas Terjamin',
-                description: 'Dikerjakan oleh ahli berpengalaman dengan standar akademik tinggi',
+                title: 'Quality Guaranteed',
+                description: 'Work completed by experienced professionals with high academic standards',
                 color: 'from-yellow-400 to-orange-500'
               },
               {
                 icon: <Clock className="h-12 w-12 text-blue-500" />,
-                title: 'Tepat Waktu',
-                description: 'Komitmen penuh untuk menyelesaikan tugas sesuai deadline',
+                title: 'On-Time Delivery',
+                description: 'Full commitment to completing work according to your deadline',
                 color: 'from-blue-500 to-cyan-500'
               },
               {
                 icon: <CheckCircle className="h-12 w-12 text-green-500" />,
-                title: 'Revisi Gratis',
-                description: 'Dapatkan revisi gratis hingga Anda puas dengan hasilnya',
+                title: 'Free Revisions',
+                description: 'Get free revisions until you are satisfied with the results',
                 color: 'from-green-500 to-emerald-500'
               }
             ].map((item, index) => (
@@ -611,21 +611,21 @@ export default function Services() {
 
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="heading-lg text-white mb-8">
-            Siap Memulai Proyek Akademik Anda?
+            Ready to Start Your Academic Project?
           </h2>
           <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-            Konsultasikan kebutuhan akademik Anda dengan tim ahli kami sekarang juga
+            Consult with our expert team about your academic needs right now
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <a href="https://wa.me/6281234567890" className="btn-primary group text-lg px-10 py-5">
               <span className="mr-3">📱</span>
-              WhatsApp Sekarang
+              WhatsApp Now
               <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
             </a>
             <a href="mailto:hello@assist.com" className="btn-secondary group text-lg px-10 py-5">
               <span className="mr-3">📧</span>
-              Email Kami
+              Email Us
             </a>
           </div>
         </div>
@@ -646,22 +646,22 @@ export default function Services() {
                 </div>
               </div>
               <p className="text-gray-300 mb-6 max-w-md">
-                Membantu mahasiswa mencapai kesuksesan akademik dengan layanan profesional dan berkualitas tinggi.
+                Helping students achieve academic success with professional and high-quality services.
               </p>
             </div>
             
             <div>
-              <h4 className="text-lg font-semibold mb-4">Layanan</h4>
+              <h4 className="text-lg font-semibold mb-4">Services</h4>
               <ul className="space-y-2 text-gray-300">
-                <li><a href="#" className="hover:text-white transition-colors">Tugas Kuliah</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Skripsi & Thesis</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Academic Assignments</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Thesis & Dissertation</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Programming</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Presentasi</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Presentations</a></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="text-lg font-semibold mb-4">Kontak</h4>
+              <h4 className="text-lg font-semibold mb-4">Contact</h4>
               <ul className="space-y-2 text-gray-300">
                 <li>Email: hello@assist.com</li>
                 <li>WhatsApp: +62 812 3456 7890</li>
